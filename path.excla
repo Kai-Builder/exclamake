@@ -1,0 +1,6 @@
+// Insert Default Law \\
+!ifndef PATH
+	!define path
+	EXTENSTR PATH_MAIN "org\excla\src\main"
+	end
+end)
