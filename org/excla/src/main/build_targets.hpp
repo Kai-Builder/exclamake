@@ -7,39 +7,41 @@
 
 #include <windows.h>
 
-
 #include <fstream>
 
 #include <string>
 
 #include <iostream>
 
-
+#include <string>
 
 namespace project {
-	void _getprojectdefaults();
-}
-
-void project::_getprojectdefaults() {
-	
-	
-	
-	using namespace std;
-	
-	
-	ifstream ifs("exclafiles\\ExclamationBuilds.txt");
-	if (ifs) {
-		string PATH;
-		ifs >> PATH;
-	} else {
-		CreateDirectory(R"("exclafiles")", nullptr);
-		ofstream BUILD_LISTS("ExclamationBuilds.txt");
-		BUILD_LISTS << "exclafiles\\" << __FILE__ << endl;
-		BUILD_LISTS.close();
+	void makeRemake(const std::string &_path) {
+		
+		using namespace std;
+		
+		
+		ifstream ifs("exclafiles\\ExclamationBuilds.txt");
+		if (ifs) {
+			string PATH;
+			ifs >> PATH;
+		}
+		else {
+			CreateDirectory(R"("exclafiles")", nullptr);
+			ofstream BUILD_LISTS("ExclamationBuilds.txt");
+			BUILD_LISTS << _path << endl;
+			BUILD_LISTS.close();
+		}
 	}
 }
+using namespace std;
+
+
+
+
 
 using namespace project;
+
 class Build {
 public:
 	// Generate Function For MakeFiles
@@ -56,8 +58,10 @@ public:
 			MAKEOUTDIR << "# Compiling Exclamation Script.\nall:\n\texcla " << path << endl;
 			system(("excla.exe " + path).c_str());
 		}
-		else
+		else {
 			cout << "Assertion Failed. Error: No File to Run." << endl;
+		}
 	}
 };
 
+Build BUILD_OUT;

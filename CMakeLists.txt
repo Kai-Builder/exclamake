@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
 include_directories(org)
+# Including Executive Dir
 
-add_executable(exclamain
-        org/excla/src/main/build_targets.cpp)
+
+# Adding Sample Scripts
+add_executable(SAMPLEDIR sample.cpp)
